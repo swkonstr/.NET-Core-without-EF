@@ -1,0 +1,104 @@
+﻿@model List<MuranoTest.Models.OneRow>
+
+<div><br><h4>Сводная форма: Пользователи/Работники/Менеджеры - режим редактирования</h4></div>
+<hr />
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].City)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Salary)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].KPI)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Bonus)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="hidden" asp-for="@Model[i].PersonsId" class="form-control" />
+                                    <input asp-for="@Model[i].Name" class="form-control" />
+                                </td>
+                                <td>
+                                    <input asp-for="@Model[i].Age" class="form-control" />
+                                </td>
+                                <td>
+                                    <input asp-for="@Model[i].City" class="form-control" />
+                                </td>
+                                @if (Model[i].EmployeesId == "")
+                                {
+                                    <td>
+                                        <input type="hidden" asp-for="@Model[i].EmployeesId" class="form-control" />
+                                        <input type="hidden" asp-for="@Model[i].Salary" class="form-control" />
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <input type="hidden" asp-for="@Model[i].EmployeesId" class="form-control" />
+                                        <input asp-for="@Model[i].Salary" class="form-control" />
+                                    </td>
+                                }
+                                @if (Model[i].ManagersId == "")
+                                {
+                                    <td>
+                                        <input type="hidden" asp-for="@Model[i].ManagersId" class="form-control" />
+                                        <input type="hidden" asp-for="@Model[i].KPI" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="hidden" asp-for="@Model[i].Bonus" class="form-control" />
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <input type="hidden" asp-for="@Model[i].ManagersId" class="form-control" />
+                                        <input asp-for="@Model[i].KPI" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model[i].Bonus" class="form-control" />
+                                    </td>
+                                }
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="Group 1">
+                    <input method="post" type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Group 2">
+                    <a href="/" class="btn btn-outline-secondary" role="button" aria-pressed="true">Back to list</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
